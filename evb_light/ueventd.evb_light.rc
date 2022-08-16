@@ -1,0 +1,25 @@
+/dev/dri/card0             0666   system     system
+/dev/ion                   0666   system     system
+/dev/pvr_sync              0666   system     system
+/dev/hantrodec             0666   system     system
+/dev/vc8000                0666   system     system
+/dev/vha0                  0666   system     system
+
+# obsolete device nodes, for backwards compatibility
+/dev/dbgdrv                0666   system     system
+/dev/pvrsrvkm              0666   system     system
+/dev/sw_sync               0666   system     system
+
+# camera nodes
+/dev/video*                0660   system     camera
+/dev/vipre*                0660   system     camera
+/dev/vivcam*               0660   system     camera
+/dev/vivdw200              0660   system     camera
+/dev/vivisp*               0660   system     camera
+/dev/vivisp_ry*            0660   system     camera
+/dev/vivsoc*               0660   system     camera
+/dev/bm_csi*               0660   system     camera
+/dev/bm_visys*             0660   system     camera
+/dev/i2c-8                 0660   system     camera
+/dev/i2c-9                 0660   system     camera
+/dev/dec*                  0660   system     camera

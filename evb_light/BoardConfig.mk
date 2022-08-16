@@ -1,0 +1,42 @@
+include device/thead/light/BoardConfigCommon.mk
+
+TARGET_BOARD_PLATFORM := light
+
+#BOARD_SYSTEMIMAGE_PARTITION_SIZE := 912261120 #1073741824 #1024MB
+BOARD_FLASH_BLOCK_SIZE := 512
+
+#Vendor partition definition
+TARGET_COPY_OUT_VENDOR := vendor
+#BOARD_VENDORIMAGE_PARTITION_SIZE := 146800640 #1073741824  #1024MB
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_VENDORIMAGE_JOURNAL_SIZE := 0
+BOARD_VENDORIMAGE_EXTFS_INODE_COUNT := 2048
+
+#Userdata partition definition
+#use "mmc part" to get userdata partition size in uboot console
+#0x0081a800      0x01d1efde      "userdata"
+#use "mmc info" to get block size
+#(0x01d1efde-0x0081a800+1)*512 = 11283709440
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 11266932224
+
+#Cache partition definition
+BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
+# BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
+
+#Recovery
+TARGET_RECOVERY_FSTAB := device/thead/light/evb_light/fstab.evb_light
+TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
+
+#realtek wifi
+BOARD_WIFI_VENDOR := realtek
+ifeq ($(BOARD_WIFI_VENDOR), realtek)
+WPA_SUPPLICANT_VERSION := VER_0_8_X
+BOARD_WPA_SUPPLICANT_DRIVER := NL80211
+#CONFIG_DRIVER_WEXT := y
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_rtl
+BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_rtl
+BOARD_HOSTAPD_DRIVER := NL80211
+BOARD_WLAN_DEVICE := realtek
+endif
+
+
