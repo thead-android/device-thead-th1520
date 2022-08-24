@@ -81,5 +81,9 @@ BOARD_AVB_BOOT_ROLLBACK_INDEX_LOCATION := 2
 # Fix recovery crash because of no png resource
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
+PRODUCT_VENDOR_PROPERTIES += \
+    dalvik.vm.heapgrowthlimit=128m \
+    dalvik.vm.heapsize=256m \
+
 # Install evb_light proprietary packages
 $(call inherit-product-if-exist, vendor/thead/light/evb_light/evb_light-vendor.mk)
