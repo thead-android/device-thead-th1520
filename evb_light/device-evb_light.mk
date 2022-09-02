@@ -78,8 +78,8 @@ BOARD_AVB_BOOT_ALGORITHM := SHA256_RSA2048
 BOARD_AVB_BOOT_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
 BOARD_AVB_BOOT_ROLLBACK_INDEX_LOCATION := 2
 
-# Fix recovery crash because of no png resource
-PRODUCT_AAPT_PREF_CONFIG := xxhdpi
+# Fix cts bug CtsThemeHostTestCases about xhdpi assets missing
+PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 PRODUCT_VENDOR_PROPERTIES += \
     dalvik.vm.heapgrowthlimit=128m \
