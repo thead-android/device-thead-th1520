@@ -67,6 +67,13 @@
     <string name="config_defaultContentCaptureService" translatable="false">com.android.contentcapture/.ContentcaptureService</string>
 
 
+    <!-- The package name for the system's augmented autofill service.
+         This service must be trusted, as it can be activated without explicit consent of the user.
+         If no service with the specified name exists on the device, augmented autofill wil be
+         disabled.
+         Example: "com.android.augmentedautofill/.AugmentedAutofillService"
+    -->
+    <string name="config_defaultAugmentedAutofillService" translatable="false">com.android.augmentedautofill/.AugmentedAutofillService</string>
 
     <!-- List of regexpressions describing the interface (if any) that represent tetherable
          Wifi interfaces.  If the device doesn't want to support tethering over Wifi this
