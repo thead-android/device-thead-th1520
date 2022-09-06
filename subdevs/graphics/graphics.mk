@@ -14,10 +14,6 @@ PRODUCT_PACKAGES += \
     vndservice \
     vndservicemanager \
 
-# Opengles version
-PRODUCT_VENDOR_PROPERTY += \
-    ro.opengles.version=196610
-
 # FIXME use harware memtrack
 PRODUCT_PACKAGES += \
     memtrack.light \
@@ -66,8 +62,10 @@ PRODUCT_PACKAGES += \
     libufwriter \
     libusc \
 
+# Opengles version
 PRODUCT_VENDOR_PROPERTIES += \
-    ro.hardware.egl=powervr
+    ro.hardware.egl=powervr  \
+    ro.opengles.version=196610
 
 # Add gpu bxm test apks
 PRODUCT_PACKAGES += \
