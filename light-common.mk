@@ -21,7 +21,7 @@ DEVICE_MANIFEST_FILE := \
 PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
 
 # Enable userspace reboot
-#$(call inherit-product, $(SRC_TARGET_DIR)/product/userspace_reboot.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/userspace_reboot.mk)
 
 # Enable project quotas and casefolding for emulated storage without sdcardfs
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
