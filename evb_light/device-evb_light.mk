@@ -85,5 +85,8 @@ PRODUCT_VENDOR_PROPERTIES += \
     dalvik.vm.heapgrowthlimit=128m \
     dalvik.vm.heapsize=256m \
 
+# Enable APK Verity, which depends on fs-verity support in kernel.
+PRODUCT_PROPERTY_OVERRIDES += ro.apk_verity.mode=2
+
 # Install evb_light proprietary packages
 $(call inherit-product-if-exist, vendor/thead/light/evb_light/evb_light-vendor.mk)
