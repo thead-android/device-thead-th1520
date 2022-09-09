@@ -50,7 +50,7 @@ PRODUCT_PACKAGES += \
     libGLESv2_powervr \
     hwcomposer.light \
     gralloc.light \
-    vulkan.powervr \
+    vulkan.light \
     libIMGegl \
     libPVROCL \
     libPVRScopeServices \
