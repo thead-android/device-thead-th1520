@@ -88,5 +88,9 @@ PRODUCT_VENDOR_PROPERTIES += \
 # Enable APK Verity, which depends on fs-verity support in kernel.
 PRODUCT_PROPERTY_OVERRIDES += ro.apk_verity.mode=2
 
+PRODUCT_COPY_FILES += \
+    system/core/libprocessgroup/profiles/cgroups.json:$(TARGET_COPY_OUT_VENDOR)/etc/cgroups.json \
+    system/core/libprocessgroup/profiles/task_profiles.json:$(TARGET_COPY_OUT_VENDOR)/etc/task_profiles.json
+
 # Install evb_light proprietary packages
 $(call inherit-product-if-exist, vendor/thead/light/evb_light/evb_light-vendor.mk)
