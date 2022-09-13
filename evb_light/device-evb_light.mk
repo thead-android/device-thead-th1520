@@ -72,6 +72,29 @@ BOARD_BOOTIMAGE_PARTITION_SIZE := 0x2000000
 
 # BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x2800000
 
+# Installs gsi keys into ramdisk, to boot a developer GSI with verified boot.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
+
+# Set Vendor SPL to match platform
+VENDOR_SECURITY_PATCH = $(PLATFORM_SECURITY_PATCH)
+
+# Set boot SPL
+BOOT_SECURITY_PATCH = $(PLATFORM_SECURITY_PATCH)
+
+# product.img
+BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
+TARGET_COPY_OUT_PRODUCT := product
+
+# system_ext.img
+BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
+TARGET_COPY_OUT_SYSTEM_EXT := system_ext
+
+BOARD_AVB_VBMETA_SYSTEM := system system_ext product
+BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
+BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
+BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
+BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 1
+
 # Enable chained vbmeta for boot images
 BOARD_AVB_BOOT_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
 BOARD_AVB_BOOT_ALGORITHM := SHA256_RSA2048

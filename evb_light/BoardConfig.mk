@@ -14,10 +14,10 @@ BOARD_VENDORIMAGE_EXTFS_INODE_COUNT := 2048
 
 #Userdata partition definition
 #use "mmc part" to get userdata partition size in uboot console
-#0x0081a800      0x01d1efde      "userdata"
+#0x00834000      0x01d1efde      "userdata"
 #use "mmc info" to get block size
-#(0x01d1efde-0x0081a800+1)*512 = 11283709440
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 11266932224
+#(0x01d1efde-0x00834000+1)*512 = 11230232064
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 11230232064
 
 #Cache partition definition
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4

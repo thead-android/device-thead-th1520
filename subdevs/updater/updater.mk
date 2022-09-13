@@ -6,8 +6,11 @@ AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS += \
     boot \
     system \
-    vendor \
-    vbmeta
+    vbmeta \
+    dtbo \
+    product \
+    system_ext \
+    vbmeta_system
 
 # FIXME use real bootctrl
 PRODUCT_PACKAGES += \
