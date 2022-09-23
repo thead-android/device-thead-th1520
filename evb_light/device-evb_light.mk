@@ -115,5 +115,9 @@ PRODUCT_COPY_FILES += \
     system/core/libprocessgroup/profiles/cgroups.json:$(TARGET_COPY_OUT_VENDOR)/etc/cgroups.json \
     system/core/libprocessgroup/profiles/task_profiles.json:$(TARGET_COPY_OUT_VENDOR)/etc/task_profiles.json
 
+# fastbootd
+PRODUCT_PACKAGES += \
+    fastbootd \
+
 # Install evb_light proprietary packages
 $(call inherit-product-if-exist, vendor/thead/light/evb_light/evb_light-vendor.mk)
