@@ -3,6 +3,7 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 include device/thead/light/subdevs/boot/boot.mk
 include device/thead/light/subdevs/graphics/graphics.mk
+include device/thead/light/subdevs/nna/nna.mk
 include device/thead/light/subdevs/security/security.mk
 include device/thead/light/subdevs/updater/updater.mk
 include device/thead/light/subdevs/performance/performance.mk
@@ -15,7 +16,7 @@ PRODUCT_SHIPPING_API_LEVEL := 31
 
 # FIXME API_LEVEL 32 required manifest fcm verison ge 6
 # but now is 3
-DEVICE_MANIFEST_FILE := \
+DEVICE_MANIFEST_FILE += \
     device/thead/light/manifest.xml
 
 PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
