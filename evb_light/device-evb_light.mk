@@ -104,10 +104,6 @@ BOARD_AVB_BOOT_ROLLBACK_INDEX_LOCATION := 2
 # Fix cts bug CtsThemeHostTestCases about xhdpi assets missing
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
-PRODUCT_VENDOR_PROPERTIES += \
-    dalvik.vm.heapgrowthlimit=128m \
-    dalvik.vm.heapsize=256m \
-
 # Enable APK Verity, which depends on fs-verity support in kernel.
 PRODUCT_PROPERTY_OVERRIDES += ro.apk_verity.mode=2
 
