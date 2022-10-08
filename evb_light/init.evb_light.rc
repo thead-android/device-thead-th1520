@@ -10,21 +10,21 @@ on early-init
     insmod /vendor/lib/modules/roles.ko
     insmod /vendor/lib/modules/dwc3.ko usb_mode=${ro.boot.usb_mode} usb_speed=${ro.boot.usb_speed}
     insmod /vendor/lib/modules/dwc3-thead.ko
-    insmod /vendor/lib/modules/hantrodec.ko
-    insmod /vendor/lib/modules/vc8000.ko
+    insmod /vendor/lib64/modules/hantrodec.ko
+    insmod /vendor/lib64/modules/vc8000.ko
     insmod /vendor/lib64/modules/memalloc.ko
-    insmod /vendor/lib64/modules/vidmem.ko
-    insmod /vendor/lib64/modules/thead_video.ko
-    insmod /vendor/lib64/modules/vi_pre.ko
-    insmod /vendor/lib64/modules/vvcam_dec400.ko
-    insmod /vendor/lib64/modules/vvcam_dw200.ko
-    insmod /vendor/lib64/modules/vvcam_i2c.ko
-    insmod /vendor/lib64/modules/vvcam_isp.ko
-    insmod /vendor/lib64/modules/vvcam_isp_ry.ko
-    insmod /vendor/lib64/modules/vvcam_sensor.ko
-    insmod /vendor/lib64/modules/vvcam_soc.ko
-    insmod /vendor/lib64/modules/bm_visys.ko
-    insmod /vendor/lib64/modules/bm_csi.ko
+    insmod /vendor/lib/modules/vidmem.ko
+    insmod /vendor/lib/modules/thead_video.ko
+    insmod /vendor/lib/modules/vi_pre.ko
+    insmod /vendor/lib/modules/vvcam_dec400.ko
+    insmod /vendor/lib/modules/vvcam_dw200.ko
+    insmod /vendor/lib/modules/vvcam_i2c.ko
+    insmod /vendor/lib/modules/vvcam_isp.ko
+    insmod /vendor/lib/modules/vvcam_isp_ry.ko
+    insmod /vendor/lib/modules/vvcam_sensor.ko
+    insmod /vendor/lib/modules/vvcam_soc.ko
+    insmod /vendor/lib/modules/bm_visys.ko
+    insmod /vendor/lib/modules/bm_csi.ko
     chmod 0666 /dev/mem
     chmod 0666 /dev/vidmem
     setprop vendor.hwc.drm.primary_display_order DSI-1

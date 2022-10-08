@@ -13,6 +13,9 @@ PRODUCT_COPY_FILES := \
 # Install light platform common packages
 $(call inherit-product, device/thead/light/light-common.mk)
 
+# Install evb_light proprietary packages
+$(call inherit-product-if-exists, vendor/thead/light/evb_light/evb_light-vendor.mk)
+
 # Overlay
 DEVICE_PACKAGE_OVERLAYS := device/thead/light/evb_light/overlay
 
@@ -115,5 +118,3 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     fastbootd \
 
-# Install evb_light proprietary packages
-$(call inherit-product-if-exist, vendor/thead/light/evb_light/evb_light-vendor.mk)

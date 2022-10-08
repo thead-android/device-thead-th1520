@@ -4,6 +4,7 @@
 /dev/hantrodec             0666   system     system
 /dev/vc8000                0666   system     system
 /dev/vha0                  0666   system     system
+/dev/vidmem                0660   system     system
 
 # obsolete device nodes, for backwards compatibility
 /dev/dbgdrv                0666   system     system
