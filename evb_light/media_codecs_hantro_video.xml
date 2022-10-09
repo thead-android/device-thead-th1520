@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright (C) 2012 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<!-- NOTE! This file is an example. Remember to use correct MediaCodec names
+    and types based on your product configuration
+    Hantro video codec names:
+    G1 decoder:     OMX.hantro.G1.video.decoder
+    H1 encoder:     OMX.hantro.H1.video.encoder
+    8290 encoder:   OMX.hantro.8290.video.encoder
+    8270 encoder:   OMX.hantro.8270.video.encoder
+    7280 encoder:   OMX.hantro.7280.video.encoder
+
+    Names and roles are defined in version.h and
+    encoder_version.h
+-->
+
+<MediaCodecs>
+    <Decoders>
+        <MediaCodec name="OMX.hantro.G2.video.decoder.avc" type="video/avc" >
+            <Limit name="size" min="64x64" max="4096x2160" />
+            <Limit name="alignment" value="2x2" />
+            <Limit name="block-size" value="16x16" />
+            <Limit name="blocks-per-second" range="12-11880" />
+            <Limit name="bitrate" range="1-384000" />
+            <Quirk name="requires-allocate-on-input-ports" />
+            <Quirk name="requires-allocate-on-output-ports" />
+        </MediaCodec>
+        <MediaCodec name="OMX.hantro.G2.video.decoder.hevc" type="video/hevc" >
+            <Limit name="size" min="64x64" max="4096x2160" />
+            <Limit name="alignment" value="2x2" />
+            <Limit name="block-size" value="16x16" />
+            <Limit name="blocks-per-second" range="12-11880" />
+            <Limit name="bitrate" range="1-384000" />
+            <Quirk name="requires-allocate-on-input-ports" />
+            <Quirk name="requires-allocate-on-output-ports" />
+        </MediaCodec>
+        <MediaCodec name="OMX.hantro.G2.video.decoder.vp9" type="video/x-vnd.on2.vp9" >
+            <Limit name="size" min="64x64" max="4096x2160" />
+            <Limit name="alignment" value="2x2" />
+            <Limit name="block-size" value="16x16" />
+            <Limit name="blocks-per-second" range="12-11880" />
+            <Limit name="bitrate" range="1-384000" />
+            <Quirk name="requires-allocate-on-input-ports" />
+            <Quirk name="requires-allocate-on-output-ports" />
+        </MediaCodec>
+        <MediaCodec name="OMX.hantro.G2.image.decoder" type="image/jpeg" />
+   </Decoders>
+
+    <Encoders>
+        <MediaCodec name="OMX.hantro.H2.video.encoder" >
+            <Type name="video/hevc" />
+            <Type name="video/avc" />
+        </MediaCodec>
+        <MediaCodec name="OMX.hantro.H2.image.encoder" type="image/jpeg" />
+    </Encoders>
+</MediaCodecs>
