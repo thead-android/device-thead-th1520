@@ -118,3 +118,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     fastbootd \
 
+# Dumpstate HAL
+PRODUCT_PACKAGES += \
+    android.hardware.dumpstate@1.1-service.light

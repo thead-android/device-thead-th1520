@@ -1,0 +1,7 @@
+dump_hal(hal_power)
+dump_hal(hal_power_stats)
+
+userdebug_or_eng(`
+  allow dumpstate media_rw_data_file:file append;
+')
+
