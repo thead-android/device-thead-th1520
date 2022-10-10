@@ -54,3 +54,10 @@ on property:sys.boot_completed=1
 
 on boot
     setprop ro.hwui.layer_cache_size 48
+
+# bugreport is triggered by holding down volume down, volume up and power
+service bugreport /system/bin/dumpstate -d -p -z
+    class main
+    disabled
+    oneshot
+    keycodes 114 115 116
