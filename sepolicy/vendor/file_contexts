@@ -35,3 +35,4 @@
 /(vendor|system/vendor)/bin/hw/android\.hardware\.camera\.provider(@2\.[0-9]+|-V1)-service-thead-lazy_64  u:object_r:hal_camera_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.camera\.provider(@2\.[0-9]+|-V1)-service-thead-lazy     u:object_r:hal_camera_default_exec:s0
 /vendor/bin/hw/android\.hardware\.dumpstate@1\.[01]-service\.light u:object_r:hal_dumpstate_impl_exec:s0
+/vendor/bin/hw/android\.hardware\.atrace@1\.0-service\.light u:object_r:hal_atrace_default_exec:s0

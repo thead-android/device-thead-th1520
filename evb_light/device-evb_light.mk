@@ -121,3 +121,7 @@ PRODUCT_PACKAGES += \
 # Dumpstate HAL
 PRODUCT_PACKAGES += \
     android.hardware.dumpstate@1.1-service.light
+
+# Atrace HAL
+PRODUCT_PACKAGES += \
+    android.hardware.atrace@1.0-service.light
