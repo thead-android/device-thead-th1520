@@ -39,4 +39,4 @@
 /vendor/bin/hw/android\.hardware\.authsecret@1\.0-service  u:object_r:hal_authsecret_default_exec:s0
 /vendor/bin/hw/android\.hardware\.authsecret-service.example u:object_r:hal_authsecret_default_exec:s0
 /vendor/bin/hw/android\.hardware\.input\.classifier@1\.0-service.default  u:object_r:hal_input_classifier_default_exec:s0
-
+/vendor/bin/hw/android\.hardware\.rebootescrow-service\.default        u:object_r:hal_rebootescrow_default_exec:s0
