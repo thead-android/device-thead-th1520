@@ -21,6 +21,8 @@
      for different hardware and product builds. -->
 <resources>
 
+    <!-- WindowsManager JetPack display features -->
+    <string name="config_display_features" translatable="false">fold-[0,400,800,1280]</string>
 
     <!-- Package name of the on-device intelligent processor for system UI
          features. Examples include the search functionality or the app
