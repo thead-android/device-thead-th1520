@@ -40,4 +40,7 @@
     <!-- Feature to specify if the device supports controls. -->
     <feature name="android.software.controls" />
 
+    <!-- Fix cts bug CtsVoiceInteractionTestCases about FEATURE_MICRPHONE missing -->
+    <feature name="android.hardware.microphone" />
+
 </permissions>
