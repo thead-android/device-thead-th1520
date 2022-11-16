@@ -43,4 +43,6 @@
     <!-- Fix cts bug CtsVoiceInteractionTestCases about FEATURE_MICRPHONE missing -->
     <feature name="android.hardware.microphone" />
 
+    <!-- Fix cts bug CtsSecurityTestCases about FEATURE_SECURITY_MODEL_COMPATIBLE missing -->
+    <feature name="android.hardware.security.model.compatible" />
 </permissions>
