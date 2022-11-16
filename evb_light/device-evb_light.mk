@@ -55,6 +55,9 @@ PRODUCT_COPY_FILES += $(LOCAL_PATH)/android.software.xml:$(TARGET_COPY_OUT_VENDO
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.ethernet.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.ethernet.xml
 
+# The device supports verified boot
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.software.verified_boot.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.verified_boot.xml
 
 # evb_light wifi configuration
 PRODUCT_COPY_FILES += \
