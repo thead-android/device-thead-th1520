@@ -148,3 +148,7 @@ PRODUCT_PACKAGES += \
 # Reboot escrow
 PRODUCT_PACKAGES += \
     android.hardware.rebootescrow-service.default
+
+# Set system properties identifying the chipset
+PRODUCT_VENDOR_PROPERTIES += ro.soc.manufacturer=THEAD
+PRODUCT_VENDOR_PROPERTIES += ro.soc.model=C910
