@@ -63,6 +63,8 @@
         <MediaCodec name="OMX.hantro.H2.video.encoder" >
             <Type name="video/hevc" />
             <Type name="video/avc" />
+            <Quirk name="requires-allocate-on-input-ports" />
+            <!-- <Quirk name="requires-allocate-on-output-ports" /> -->
         </MediaCodec>
         <MediaCodec name="OMX.hantro.H2.image.encoder" type="image/jpeg" />
     </Encoders>
