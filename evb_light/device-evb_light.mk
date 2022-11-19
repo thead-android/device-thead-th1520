@@ -152,3 +152,8 @@ PRODUCT_PACKAGES += \
 # Set system properties identifying the chipset
 PRODUCT_VENDOR_PROPERTIES += ro.soc.manufacturer=THEAD
 PRODUCT_VENDOR_PROPERTIES += ro.soc.model=C910
+
+PRODUCT_PACKAGES_DEBUG += \
+    sg_write_buffer \
+    f2fs_io \
+    check_f2fs
