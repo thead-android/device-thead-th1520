@@ -157,3 +157,7 @@ PRODUCT_PACKAGES_DEBUG += \
     sg_write_buffer \
     f2fs_io \
     check_f2fs
+
+# Use FUSE passthrough
+PRODUCT_PRODUCT_PROPERTIES += \
+    persist.sys.fuse.passthrough.enable=true
