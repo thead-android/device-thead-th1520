@@ -32,6 +32,7 @@ on early-init
     insmod /vendor/lib/modules/vvcam_soc.ko
     insmod /vendor/lib/modules/bm_visys.ko
     insmod /vendor/lib/modules/bm_csi.ko
+    insmod /vendor/lib/modules/galcore.ko
     chmod 0666 /dev/mem
     chmod 0666 /dev/vidmem
     setprop vendor.hwc.drm.primary_display_order DSI-1
