@@ -8,3 +8,9 @@ init_daemon_domain(hal_dumpstate_impl)
 allow hal_dumpstate_impl vendor_shell_exec:file rx_file_perms;
 allow hal_dumpstate_impl vendor_toolbox_exec:file rx_file_perms;
 
+# Access to prop
+get_prop(hal_dumpstate_impl, boottime_public_prop)
+
+# avc: denied { getattr } for path="/data/user_de/0/com.android.shell/files/bugreports/dumpstate_board.txt"
+# dev="dm-4" ino=4433 scontext=u:r:hal_dumpstate_impl:s0 tcontext=u:object_r:shell_data_file:s0 tclass=file permissive=0
+allow hal_dumpstate_impl shell_data_file:file getattr;
