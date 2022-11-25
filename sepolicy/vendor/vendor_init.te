@@ -1,0 +1,6 @@
+# ==============================================
+# THEAD Policy Rule
+# ==============================================
+
+allow vendor_init self:capability sys_module;
+allow vendor_init vendor_file:system module_load;
