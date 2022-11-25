@@ -5,3 +5,4 @@ userdebug_or_eng(`
   allow dumpstate media_rw_data_file:file append;
 ')
 
+dontaudit dumpstate sysfs:file { read };
