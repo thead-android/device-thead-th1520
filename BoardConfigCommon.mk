@@ -32,9 +32,13 @@ TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_VNDK_VERSION := current
 
 
-# Include *.dtb to boot.img and use Android Boot Image v2
+# Include *.dtb to vendor_boot.img and use Android Boot Image v4
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
-BOARD_MKBOOTIMG_ARGS := --header_version 2
+BOARD_BOOT_HEADER_VERSION := 4
+BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
+
+# vendor_boot.img
+BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 0x02000000
 
 
 BOARD_DTBOIMG_PARTITION_SIZE := 0x100000 # 1 MiB
