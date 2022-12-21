@@ -32,6 +32,16 @@ TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_VNDK_VERSION := current
 
 
+BOARD_BOOTCONFIG += androidboot.hardware=evb_light
+BOARD_BOOTCONFIG += androidboot.console=ttyS0
+BOARD_BOOTCONFIG += androidboot.bootreason=cold,powerkey
+BOARD_BOOTCONFIG += androidboot.usb_mode=2
+BOARD_BOOTCONFIG += androidboot.usb_speed=5
+BOARD_BOOTCONFIG += androidboot.boot_devices=soc/ffe7080000.sdhci
+BOARD_BOOTCONFIG += androidboot.slot_suffix=_a
+BOARD_BOOTCONFIG += androidboot.selinux=permissive
+
+BOARD_KERNEL_CMDLINE += bootconfig
 # Include *.dtb to vendor_boot.img and use Android Boot Image v4
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_BOOT_HEADER_VERSION := 4
