@@ -50,6 +50,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.opengles.aep.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.opengles.aep.xml \
 
 PRODUCT_COPY_FILES += $(LOCAL_PATH)/android.software.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.xml
+PRODUCT_COPY_FILES += $(LOCAL_PATH)/android.hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.xml
 
 # ethernet #
 PRODUCT_COPY_FILES += \
