@@ -19,7 +19,7 @@ TARGET_ARCH_VARIANT := riscv64
 TARGET_CPU_ABI := riscv64
 TARGET_CPU_ABI2 :=
 TARGET_CPU_VARIANT := generic
-
+TARGET_CPU_VARIANT_RUNTIME := c910
 
 TARGET_USERIMAGES_USE_EXT4 := true
 # FIXME: there are have 2ND arch, may riscv32, skip here
