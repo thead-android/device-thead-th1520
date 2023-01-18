@@ -82,3 +82,5 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     vendor/thead/prebuilt/gpu_bxm/firmware/rgx.fw.36.52.104.182:$(TARGET_COPY_OUT_VENDOR)/firmware/rgx.fw.36.52.104.182 \
     vendor/thead/prebuilt/gpu_bxm/firmware/rgx.sh.36.52.104.182:$(TARGET_COPY_OUT_VENDOR)/firmware/rgx.sh.36.52.104.182 \
+
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
