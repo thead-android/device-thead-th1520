@@ -168,3 +168,10 @@ PRODUCT_PACKAGES_DEBUG += \
 # Use FUSE passthrough
 PRODUCT_PRODUCT_PROPERTIES += \
     persist.sys.fuse.passthrough.enable=true
+
+# Fix cts bug CtsNativeVerifiedBootTestCases
+PRODUCT_PRODUCT_PROPERTIES += \
+    partition.system.verified.hash_alg=$(BOARD_AVB_VBMETA_SYSTEM_ALGORITHM) \
+    partition.system_ext.verified.hash_alg=$(BOARD_AVB_VBMETA_SYSTEM_ALGORITHM) \
+    partition.vendor.verified.hash_alg=$(BOARD_AVB_VBMETA_SYSTEM_ALGORITHM) \
+    partition.product.verified.hash_alg=$(BOARD_AVB_VBMETA_SYSTEM_ALGORITHM) \
