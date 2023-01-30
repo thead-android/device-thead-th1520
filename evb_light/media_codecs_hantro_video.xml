@@ -34,38 +34,18 @@
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
             <Limit name="blocks-per-second" range="12-11880" />
-            <Limit name="bitrate" range="1-384000" />
+	    <Limit name="bitrate" range="1-384000" />
             <Quirk name="requires-allocate-on-input-ports" />
-            <Quirk name="requires-allocate-on-output-ports" />
+	    <Quirk name="requires-allocate-on-output-ports" />
+            <Feature name="adaptive-playback" />
         </MediaCodec>
-        <MediaCodec name="OMX.hantro.G2.video.decoder.hevc" type="video/hevc" >
-            <Limit name="size" min="64x64" max="4096x2160" />
-            <Limit name="alignment" value="2x2" />
-            <Limit name="block-size" value="16x16" />
-            <Limit name="blocks-per-second" range="12-11880" />
-            <Limit name="bitrate" range="1-384000" />
-            <Quirk name="requires-allocate-on-input-ports" />
-            <Quirk name="requires-allocate-on-output-ports" />
-        </MediaCodec>
-        <MediaCodec name="OMX.hantro.G2.video.decoder.vp9" type="video/x-vnd.on2.vp9" >
-            <Limit name="size" min="64x64" max="4096x2160" />
-            <Limit name="alignment" value="2x2" />
-            <Limit name="block-size" value="16x16" />
-            <Limit name="blocks-per-second" range="12-11880" />
-            <Limit name="bitrate" range="1-384000" />
-            <Quirk name="requires-allocate-on-input-ports" />
-            <Quirk name="requires-allocate-on-output-ports" />
-        </MediaCodec>
-        <MediaCodec name="OMX.hantro.G2.image.decoder" type="image/jpeg" />
    </Decoders>
 
     <Encoders>
         <MediaCodec name="OMX.hantro.H2.video.encoder" >
-            <Type name="video/hevc" />
             <Type name="video/avc" />
             <Quirk name="requires-allocate-on-input-ports" />
             <!-- <Quirk name="requires-allocate-on-output-ports" /> -->
         </MediaCodec>
-        <MediaCodec name="OMX.hantro.H2.image.encoder" type="image/jpeg" />
     </Encoders>
 </MediaCodecs>
