@@ -2,6 +2,7 @@
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.5-service-thead \
     libthead_camera_core \
+    libyaml
 
 # odm must make their media_profiles_V1_0.xml to odm/etc
 PRODUCT_COPY_FILES += \
