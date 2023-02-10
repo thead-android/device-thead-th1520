@@ -121,7 +121,6 @@ PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 # Enable APK Verity, which depends on fs-verity support in kernel.
 PRODUCT_PROPERTY_OVERRIDES += ro.apk_verity.mode=2
-PRODUCT_PROPERTY_OVERRIDES += ro.odm.build.media_performance_class=31
 
 PRODUCT_COPY_FILES += \
     system/core/libprocessgroup/profiles/cgroups.json:$(TARGET_COPY_OUT_VENDOR)/etc/cgroups.json \
