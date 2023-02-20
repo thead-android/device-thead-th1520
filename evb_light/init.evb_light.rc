@@ -17,9 +17,9 @@ on early-init
     insmod /vendor/lib/modules/roles.ko
     insmod /vendor/lib/modules/dwc3.ko usb_mode=${ro.boot.usb_mode} usb_speed=${ro.boot.usb_speed}
     insmod /vendor/lib/modules/dwc3-thead.ko
-    insmod /vendor/lib64/modules/hantrodec.ko
-    insmod /vendor/lib64/modules/vc8000.ko
-    insmod /vendor/lib64/modules/memalloc.ko
+    insmod /vendor/lib/modules/hantrodec.ko
+    insmod /vendor/lib/modules/vc8000.ko
+    insmod /vendor/lib/modules/memalloc.ko
     insmod /vendor/lib/modules/vidmem.ko
     insmod /vendor/lib/modules/thead_video.ko
     insmod /vendor/lib/modules/vi_pre.ko
