@@ -25,6 +25,9 @@
 /dev/dec[0-2] u:object_r:video_device:s0
 /dev/i2c-8 u:object_r:video_device:s0
 /dev/i2c-9 u:object_r:video_device:s0
+/dev/vc8000 u:object_r:video_device:s0
+/dev/hantrodec u:object_r:video_device:s0
+/dev/galcore u:object_r:video_device:s0
 
 #for gpu um
 /vendor/lib(64)?/hw/android\.hardware\.graphics\.mapper@2\.0-impl-2\.1\.so u:object_r:same_process_hal_file:s0
