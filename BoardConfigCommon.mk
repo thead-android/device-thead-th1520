@@ -81,3 +81,4 @@ BOARD_USES_METADATA_PARTITION := true
 BUILD_BROKEN_DUP_RULES := true
 
 BOARD_SEPOLICY_DIRS += device/thead/light/sepolicy/vendor
+BOARD_ROOT_EXTRA_SYMLINKS += /vendor/firmware:/lib/firmware
