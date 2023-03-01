@@ -6,6 +6,7 @@ on boot
     write /config/usb_gadget/g1/driver_match_existing_only 0
     write /config/usb_gadget/g1/idVendor 0x18d1
     write /config/usb_gadget/g1/bcdDevice 0x0223
+    write /config/usb_gadget/g1/os_desc/use 1
     write /config/usb_gadget/g1/strings/0x409/serialnumber "1234567890"
     write /config/usb_gadget/g1/strings/0x409/manufacturer "Thead"
     write /config/usb_gadget/g1/strings/0x409/product "ADB Gadget"
