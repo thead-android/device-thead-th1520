@@ -183,3 +183,8 @@ PRODUCT_PRODUCT_PROPERTIES += \
     partition.system_ext.verified.hash_alg=$(BOARD_AVB_VBMETA_SYSTEM_ALGORITHM) \
     partition.vendor.verified.hash_alg=$(BOARD_AVB_VBMETA_SYSTEM_ALGORITHM) \
     partition.product.verified.hash_alg=$(BOARD_AVB_VBMETA_SYSTEM_ALGORITHM) \
+
+#release key included only for user build
+ifeq ($(TARGET_BUILD_VARIANT),user)
+PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/thead/build/release/apk_key/release
+endif
