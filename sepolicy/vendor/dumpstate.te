@@ -6,3 +6,4 @@ userdebug_or_eng(`
 ')
 
 dontaudit dumpstate sysfs:file { read };
+allow dumpstate keystore:process { signal };
