@@ -188,3 +188,12 @@ PRODUCT_PRODUCT_PROPERTIES += \
 ifeq ($(TARGET_BUILD_VARIANT),user)
 PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/thead/build/release/apk_key/release
 endif
+
+ifeq ($(PRODUCT_BUILD_TYPE), daily)
+DAILY_BUILD_TIME := $(shell date +"%Y-%m-%d:%H:%M:%S")
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.product.evb_light.version=RV64.Android.$(PLATFORM_VERSION_LAST_STABLE).alpha.V0.2.daily$(DAILY_BUILD_TIME)
+else
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.product.evb_light.version=RV64.Android.$(PLATFORM_VERSION_LAST_STABLE).alpha.V0.2
+endif
