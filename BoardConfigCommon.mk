@@ -35,7 +35,6 @@ TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_VNDK_VERSION := current
 
 
-BOARD_BOOTCONFIG += androidboot.hardware=evb_light
 BOARD_BOOTCONFIG += androidboot.console=ttyS0
 BOARD_BOOTCONFIG += androidboot.bootreason=cold,powerkey
 BOARD_BOOTCONFIG += androidboot.usb_mode=2

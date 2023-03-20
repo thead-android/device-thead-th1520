@@ -7,8 +7,10 @@ LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 LOCAL_DTB := $(TARGET_PREBUILT_DTB)
 endif
 
+LOCAL_BOOTPART := vendor/thead/prebuilt/bootpart/bootpart.ext4
 PRODUCT_COPY_FILES := \
-    $(LOCAL_KERNEL):kernel
+    $(LOCAL_KERNEL):kernel \
+    $(LOCAL_BOOTPART):bootpart.ext4
 
 # Install light platform common packages
 $(call inherit-product, device/thead/light/light-common.mk)
