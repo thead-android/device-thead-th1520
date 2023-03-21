@@ -1,2 +1,5 @@
 # Device types
 type ab_block_device, dev_type;
+
+# IMGNN types
+type imgnn_device, dev_type, mlstrustedobject;

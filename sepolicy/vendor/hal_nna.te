@@ -1,0 +1,18 @@
+type hal_neuralnetworks_default, domain;
+
+type hal_neuralnetworks_default_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(hal_neuralnetworks_default)
+
+hal_server_domain(hal_neuralnetworks_default, hal_neuralnetworks)
+
+allow hal_neuralnetworks_default ion_device:chr_file rw_file_perms;
+
+allow hal_neuralnetworks_default imgnn_device:chr_file { open read write ioctl map getattr };
+
+
+# mlsconstrain chr_file { write setattr append unlink link rename } ((t2 == app_data_file_type -Fail-)  or (t2 == appdomain_tmpfs -Fail-)  or (l1 eq l2 -Fail-)  or (t1 == mlstrustedsubject -Fail-)  or (t2 == mlstrustedobject -Fail-) );
+#avc: denied { write } for comm="Thread-2" name="vha0" dev="tmpfs" ino=479
+# scontext=u:r:untrusted_app:s0:c91,c256,c512,c768 tcontext=u:object_r:imgnn_device:s0 tclass=chr_file permissive=0 app=com.thead.ssd
+allow untrusted_app ion_device:chr_file rw_file_perms;
+allow untrusted_app imgnn_device:chr_file { open read write ioctl map getattr };
+
