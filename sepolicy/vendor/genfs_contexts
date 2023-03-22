@@ -1,2 +1,3 @@
 genfscon sysfs /devices/platform/soc/ffe7060000.ethernet/net u:object_r:sysfs_net:s0
 genfscon sysfs /devices/platform/soc/ffe7070000.ethernet/net u:object_r:sysfs_net:s0
+genfscon sysfs /devices/platform/soc/ffe70a0000.sd/mmc_host/mmc2 u:object_r:sysfs_net:s0
