@@ -25,3 +25,4 @@
 /dev/i2c-8                 0660   system     camera
 /dev/i2c-9                 0660   system     camera
 /dev/dec*                  0660   system     camera
+/dev/xvp*                  0660   system     camera
