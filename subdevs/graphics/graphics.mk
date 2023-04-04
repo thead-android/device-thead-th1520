@@ -16,7 +16,7 @@ PRODUCT_PACKAGES += \
 
 # FIXME use harware memtrack
 PRODUCT_PACKAGES += \
-    memtrack.light \
+    memtrack.th1520 \
     android.hardware.memtrack@1.0-service \
     android.hardware.memtrack@1.0-impl
 
@@ -48,9 +48,9 @@ PRODUCT_PACKAGES += \
     libEGL_powervr \
     libGLESv1_CM_powervr \
     libGLESv2_powervr \
-    hwcomposer.light \
-    gralloc.light \
-    vulkan.light \
+    hwcomposer.th1520 \
+    gralloc.th1520 \
+    vulkan.th1520 \
     libIMGegl \
     libPVROCL \
     libPVRScopeServices \

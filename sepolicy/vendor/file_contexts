@@ -12,6 +12,15 @@
 /dev/dri/card1          u:object_r:gpu_device:s0
 /dev/dri/renderD128     u:object_r:gpu_device:s0
 
+#soft gpu
+/vendor/lib64/hw/gralloc\.arv\.so          u:object_r:same_process_hal_file:s0
+/vendor/lib64/dri/libgallium_dri\.so       u:object_r:same_process_hal_file:s0
+/vendor/lib64/libdrm\.so                   u:object_r:same_process_hal_file:s0
+/vendor/lib64/libglapi\.so                 u:object_r:same_process_hal_file:s0
+/vendor/lib64/egl/libEGL_mesa\.so          u:object_r:same_process_hal_file:s0
+/vendor/lib64/egl/libGLESv1_CM_mesa\.so    u:object_r:same_process_hal_file:s0
+/vendor/lib64/egl/libGLESv2_mesa\.so       u:object_r:same_process_hal_file:s0
+
 # video dev files
 /dev/vidmem u:object_r:video_device:s0
 /dev/bm_csi[0-9]  u:object_r:video_device:s0
@@ -56,11 +65,11 @@
 /(vendor|system/vendor)/bin/hw/android\.hardware\.camera\.provider(@2\.[0-9]+|-V1)-service-thead          u:object_r:hal_camera_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.camera\.provider(@2\.[0-9]+|-V1)-service-thead-lazy_64  u:object_r:hal_camera_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.camera\.provider(@2\.[0-9]+|-V1)-service-thead-lazy     u:object_r:hal_camera_default_exec:s0
-/vendor/bin/hw/android\.hardware\.dumpstate@1\.[01]-service\.light u:object_r:hal_dumpstate_impl_exec:s0
-/vendor/bin/hw/android\.hardware\.atrace@1\.0-service\.light u:object_r:hal_atrace_default_exec:s0
+/vendor/bin/hw/android\.hardware\.dumpstate@1\.[01]-service\.th1520 u:object_r:hal_dumpstate_impl_exec:s0
+/vendor/bin/hw/android\.hardware\.atrace@1\.0-service\.th1520 u:object_r:hal_atrace_default_exec:s0
 /vendor/bin/hw/android\.hardware\.authsecret@1\.0-service  u:object_r:hal_authsecret_default_exec:s0
 /vendor/bin/hw/android\.hardware\.authsecret-service.example u:object_r:hal_authsecret_default_exec:s0
 /vendor/bin/hw/android\.hardware\.input\.classifier@1\.0-service.default  u:object_r:hal_input_classifier_default_exec:s0
 /vendor/bin/hw/android\.hardware\.rebootescrow-service\.default        u:object_r:hal_rebootescrow_default_exec:s0
 
-/vendor/bin/hw/android\.hardware\.oemlock-service.light u:object_r:hal_oemlock_default_exec:s0
+/vendor/bin/hw/android\.hardware\.oemlock-service.th1520 u:object_r:hal_oemlock_default_exec:s0

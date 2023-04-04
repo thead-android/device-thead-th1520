@@ -1,5 +1,4 @@
-<manifest version="1.0" type="device" target-level="3">
-    <kernel target-level="6"/>
+<manifest version="1.0" type="device" target-level="4">
     <hal format="hidl">
         <name>android.hardware.audio</name>
         <transport>hwbinder</transport>
@@ -83,15 +82,6 @@
         </interface>
         <interface>
             <name>IOmxStore</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.health</name>
-        <transport>hwbinder</transport>
-        <version>2.0</version>
-        <interface>
-            <name>IHealth</name>
             <instance>default</instance>
         </interface>
     </hal>

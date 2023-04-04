@@ -1,23 +1,26 @@
-TARGET_BOARD_PLATFORM := light
+-include device/thead/common/os_version.mk
+
+TARGET_BOARD_PLATFORM := th1520
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
-include device/thead/light/subdevs/boot/boot.mk
-include device/thead/light/subdevs/graphics/graphics.mk
-include device/thead/light/subdevs/nna/nna.mk
-include device/thead/light/subdevs/security/security.mk
-include device/thead/light/subdevs/updater/updater.mk
-include device/thead/light/subdevs/performance/performance.mk
-include device/thead/light/subdevs/audio/audio.mk
-include device/thead/light/subdevs/camera/camera.mk
-include device/thead/light/subdevs/media/media.mk
-include device/thead/light/subdevs/connectivity/connectivity.mk
+include device/thead/th1520/subdevs/boot/boot.mk
+
+include device/thead/th1520/subdevs/graphics/graphics.mk
+include device/thead/th1520/subdevs/nna/nna.mk
+include device/thead/th1520/subdevs/security/security.mk
+include device/thead/th1520/subdevs/updater/updater.mk
+include device/thead/th1520/subdevs/performance/performance.mk
+include device/thead/th1520/subdevs/audio/audio.mk
+include device/thead/th1520/subdevs/camera/camera.mk
+include device/thead/th1520/subdevs/media/media.mk
+include device/thead/th1520/subdevs/connectivity/connectivity.mk
 
 PRODUCT_SHIPPING_API_LEVEL := 31
 
 # FIXME API_LEVEL 32 required manifest fcm verison ge 6
 # but now is 3
 DEVICE_MANIFEST_FILE += \
-    device/thead/light/manifest.xml
+    device/thead/th1520/manifest.xml
 
 PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
 
@@ -40,7 +43,6 @@ PRODUCT_PACKAGES += \
     modetest
 endif
 
-KERNEL_MODULE_DIR := device/thead/light-kernel
+KERNEL_MODULE_DIR := device/thead/th1520-kernel
 BOARD_VENDOR_KERNEL_MODULES := $(wildcard $(KERNEL_MODULE_DIR)/*.ko)
-
 

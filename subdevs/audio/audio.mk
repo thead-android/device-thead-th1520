@@ -12,11 +12,11 @@ PRODUCT_PACKAGES += \
 # Default audio primary. Odm can set ro.hardware.audio=xxx and
 # install  audio.primary.xxx to odm/lib64/hw
 PRODUCT_PACKAGES += \
-    audio.primary.light \
+    audio.primary.th1520 \
 
 # Default audio config files. ODM can install their config files to odm/etc
 PRODUCT_COPY_FILES += \
-    device/thead/light/subdevs/audio/audio_policy_configuration_7_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml \
+    device/thead/th1520/subdevs/audio/audio_policy_configuration_7_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/a2dp_in_audio_policy_configuration_7_0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_in_audio_policy_configuration_7_0.xml \
     frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/usb_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml \

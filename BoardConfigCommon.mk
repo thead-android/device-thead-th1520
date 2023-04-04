@@ -14,26 +14,23 @@
 # limitations under the License.
 #
 
+-include device/thead/common/os_version.mk
+
 TARGET_ARCH := riscv64
 TARGET_CPU_ABI := riscv64
-TARGET_CPU_ABI2 :=
+
+ifeq ($(BUILD_AOSP_MASTER), true)
+TARGET_ARCH_VARIANT :=
+TARGET_CPU_VARIANT := generic
+
+else
 TARGET_ARCH_VARIANT := riscv64-xtheadc
 TARGET_CPU_VARIANT := c910
 TARGET_CPU_VARIANT_RUNTIME := c910
-# TARGET_ARCH_VARIANT := riscv64
-# TARGET_CPU_VARIANT := riscv64
-# TARGET_CPU_VARIANT_RUNTIME := riscv64
+endif
 
 TARGET_USERIMAGES_USE_EXT4 := true
-# FIXME: there are have 2ND arch, may riscv32, skip here
-#TARGET_2ND_ARCH := riscv64
-#TARGET_2ND_ARCH_VARIANT := riscv64
-#TARGET_2ND_CPU_ABI := lp64d
-#TARGET_2ND_CPU_ABI2 := riscv64
-#TARGET_2ND_CPU_VARIANT := generic
-
 BOARD_VNDK_VERSION := current
-
 
 BOARD_BOOTCONFIG += androidboot.console=ttyS0
 BOARD_BOOTCONFIG += androidboot.bootreason=cold,powerkey
@@ -66,9 +63,9 @@ WITH_DEXPREOPT := true
 
 #AB, no retrofit
 BOARD_SUPER_PARTITION_SIZE := 4294967296 # 4GB
-BOARD_SUPER_PARTITION_GROUPS := light_dynamic_partitions
-BOARD_LIGHT_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor system_ext product
-BOARD_LIGHT_DYNAMIC_PARTITIONS_SIZE := 2143289344 # 4GB/2 - 4M
+BOARD_SUPER_PARTITION_GROUPS := th1520_dynamic_partitions
+BOARD_TH1520_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor system_ext product
+BOARD_TH1520_DYNAMIC_PARTITIONS_SIZE := 2143289344 # 4GB/2 - 4M
 BOARD_SUPER_PARTITION_METADATA_DEVICE := super
 BOARD_BUILD_SUPER_IMAGE_BY_DEFAULT := true
 BOARD_SUPER_IMAGE_IN_UPDATE_PACKAGE := true
@@ -79,5 +76,5 @@ BOARD_USES_METADATA_PARTITION := true
 # FIXME remove prebuilts/vndk/31, it conflicts with packages/modules/vndk
 BUILD_BROKEN_DUP_RULES := true
 
-BOARD_SEPOLICY_DIRS += device/thead/light/sepolicy/vendor
+BOARD_SEPOLICY_DIRS += device/thead/th1520/sepolicy/vendor
 BOARD_ROOT_EXTRA_SYMLINKS += /vendor/firmware:/lib/firmware

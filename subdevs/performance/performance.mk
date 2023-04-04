@@ -1,6 +1,6 @@
 
 PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-impl-thead \
+    android.hardware.health@2.1-impl \
     android.hardware.health@2.1-service
 
 # Storage health HAL
