@@ -1,12 +1,8 @@
--include device/thead/common/os_version.mk
-
 TARGET_BOARD_PLATFORM := th1520
-PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
-include device/thead/th1520/subdevs/boot/boot.mk
+$(call inherit-product, vendor/thead/proprietary/config/chipset/th1520/th1520.mk)
 
 include device/thead/th1520/subdevs/graphics/graphics.mk
-include device/thead/th1520/subdevs/nna/nna.mk
 include device/thead/th1520/subdevs/security/security.mk
 include device/thead/th1520/subdevs/updater/updater.mk
 include device/thead/th1520/subdevs/performance/performance.mk
@@ -16,6 +12,7 @@ include device/thead/th1520/subdevs/media/media.mk
 include device/thead/th1520/subdevs/connectivity/connectivity.mk
 
 PRODUCT_SHIPPING_API_LEVEL := 31
+PRODUCT_CHARACTERISTICS := tablet
 
 # FIXME API_LEVEL 32 required manifest fcm verison ge 6
 # but now is 3
@@ -43,6 +40,10 @@ PRODUCT_PACKAGES += \
     modetest
 endif
 
+ifeq ($(TARGET_PREBUILT_KERNEL_MODULES), )
 KERNEL_MODULE_DIR := device/thead/th1520-kernel
-BOARD_VENDOR_KERNEL_MODULES := $(wildcard $(KERNEL_MODULE_DIR)/*.ko)
+else
+KERNEL_MODULE_DIR := $(TARGET_PREBUILT_KERNEL_MODULES)
+endif
 
+BOARD_VENDOR_KERNEL_MODULES := $(wildcard $(KERNEL_MODULE_DIR)/*.ko)

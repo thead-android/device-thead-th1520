@@ -14,20 +14,14 @@
 # limitations under the License.
 #
 
--include device/thead/common/os_version.mk
 
 TARGET_ARCH := riscv64
 TARGET_CPU_ABI := riscv64
 
-ifeq ($(BUILD_AOSP_MASTER), true)
 TARGET_ARCH_VARIANT :=
 TARGET_CPU_VARIANT := generic
 
-else
-TARGET_ARCH_VARIANT := riscv64-xtheadc
-TARGET_CPU_VARIANT := c910
-TARGET_CPU_VARIANT_RUNTIME := c910
-endif
+-include vendor/thead/proprietary/config/arch/th1520.mk
 
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_VNDK_VERSION := current
@@ -71,10 +65,6 @@ BOARD_BUILD_SUPER_IMAGE_BY_DEFAULT := true
 BOARD_SUPER_IMAGE_IN_UPDATE_PACKAGE := true
 
 BOARD_USES_METADATA_PARTITION := true
-
-
-# FIXME remove prebuilts/vndk/31, it conflicts with packages/modules/vndk
-BUILD_BROKEN_DUP_RULES := true
 
 BOARD_SEPOLICY_DIRS += device/thead/th1520/sepolicy/vendor
 BOARD_ROOT_EXTRA_SYMLINKS += /vendor/firmware:/lib/firmware
