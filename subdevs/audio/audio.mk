@@ -13,6 +13,7 @@ PRODUCT_PACKAGES += \
 # install  audio.primary.xxx to odm/lib64/hw
 PRODUCT_PACKAGES += \
     audio.primary.th1520 \
+    audio.r_submix.default \
 
 # Default audio config files. ODM can install their config files to odm/etc
 PRODUCT_COPY_FILES += \
