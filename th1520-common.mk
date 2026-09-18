@@ -51,6 +51,11 @@ $(error TARGET_PREBUILT_KERNEL_MODULES must point to modules built with the sele
 endif
 
 KERNEL_MODULE_DIR := $(TARGET_PREBUILT_KERNEL_MODULES)
+# Do not silently build an image whose init requests an absent backlight module.
+ifeq ($(wildcard $(KERNEL_MODULE_DIR)/th1520_pwm0_diag.ko),)
+$(error This LPi4A DSI image requires the matching th1520_pwm0_diag.ko module)
+endif
+PRODUCT_PACKAGES += lpi4a_v4l2_layout_probe
 # Keep the obsolete RTL8723BS driver out of the image.  The fitted
 # FGN200AKSR-05 is handled by the AIC BSP/FDRV pair, and shipping both drivers
 # makes an old init script capable of claiming the same SDIO functions first.
