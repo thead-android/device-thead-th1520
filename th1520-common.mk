@@ -51,4 +51,9 @@ $(error TARGET_PREBUILT_KERNEL_MODULES must point to modules built with the sele
 endif
 
 KERNEL_MODULE_DIR := $(TARGET_PREBUILT_KERNEL_MODULES)
-BOARD_VENDOR_KERNEL_MODULES := $(wildcard $(KERNEL_MODULE_DIR)/*.ko)
+# Keep the obsolete RTL8723BS driver out of the image.  The fitted
+# FGN200AKSR-05 is handled by the AIC BSP/FDRV pair, and shipping both drivers
+# makes an old init script capable of claiming the same SDIO functions first.
+BOARD_VENDOR_KERNEL_MODULES := $(filter-out \
+    $(KERNEL_MODULE_DIR)/r8723bs.ko, \
+    $(wildcard $(KERNEL_MODULE_DIR)/*.ko))
