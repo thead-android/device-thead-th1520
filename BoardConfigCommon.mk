@@ -37,7 +37,6 @@ BOARD_BOOTCONFIG += androidboot.bootreason=cold,powerkey
 BOARD_BOOTCONFIG += androidboot.usb_mode=2
 BOARD_BOOTCONFIG += androidboot.usb_speed=5
 BOARD_BOOTCONFIG += androidboot.boot_devices=soc/ffe7080000.mmc
-BOARD_BOOTCONFIG += androidboot.selinux=permissive
 
 # The bootloader supplies androidboot.slot_suffix from the selected BCB slot.
 # Do not leave an unattended board halted after an early bring-up panic.

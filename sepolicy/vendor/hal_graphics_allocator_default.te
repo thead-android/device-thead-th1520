@@ -3,3 +3,25 @@ type dmabuf_cma_heap_device, dmabuf_heap_device_type, dev_type;
 # The TH1520 PowerVR gralloc's ION ABI shim allocates scanout-capable buffers
 # from the mainline CMA DMA-BUF heap.
 allow hal_graphics_allocator_default dmabuf_cma_heap_device:chr_file r_file_perms;
+
+# The minigbm allocator opens the render node selected by DRM.  LPI4A exposes
+# renderD129 when the display controller owns card0, so this cannot be covered
+# by the old renderD128-only device label.
+allow hal_graphics_allocator_default gpu_device:chr_file {
+    getattr
+    ioctl
+    map
+    open
+    read
+    write
+};
+
+# minigbm's stable-C mapper passes a small allocator-created memfd reserved
+# region with each buffer.  Restrict access to existing graphics allocator
+# clients, which are exactly the domains that receive those file descriptors.
+allow hal_graphics_allocator_client hal_graphics_allocator_default_tmpfs:file {
+    getattr
+    map
+    read
+    write
+};

@@ -1,0 +1,4 @@
+# TH1520 GPU and RTL8723DS firmware are installed below /vendor/firmware.
+# request_firmware() performs the read in the kernel domain.
+allow kernel vendor_file:file r_file_perms;
+allow kernel vendor_file:system firmware_load;

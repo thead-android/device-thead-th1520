@@ -1,1 +1,5 @@
 android.hardware.neuralnetworks.IDevice/img-nna     u:object_r:hal_neuralnetworks_service:s0
+
+# minigbm implements mapper5 as a stable-C passthrough HAL.  Native mapper
+# instances use the "{type}/{instance}" service-manager naming convention.
+mapper/minigbm      u:object_r:hal_graphics_mapper_service:s0
