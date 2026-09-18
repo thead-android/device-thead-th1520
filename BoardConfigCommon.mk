@@ -19,7 +19,11 @@ TARGET_ARCH := riscv64
 TARGET_CPU_ABI := riscv64
 
 TARGET_ARCH_VARIANT :=
-TARGET_CPU_VARIANT := generic
+# ART's generic RISC-V variant enables RVV 1.0 plus Zba/Zbb/Zbs. The C910
+# variant selects the XTheadVector assembler/codegen path and keeps those
+# incompatible standard extensions out of both dexpreopt and the runtime JIT.
+TARGET_CPU_VARIANT := c910
+TARGET_CPU_VARIANT_RUNTIME := c910
 
 -include vendor/thead/proprietary/config/arch/th1520.mk
 
