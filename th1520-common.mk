@@ -43,10 +43,12 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
 # modetest installs into /system/bin. Modern generic_system artifact-path
 # enforcement rejects device-specific additions there; keep it out of images.
 
+# Android 17 on LPi4A uses the mainline/GKI boot chain. Falling back to the
+# vendor 5.10 module directory produces a bootable image whose modules cannot
+# load into that kernel, so reject an incomplete build environment immediately.
 ifeq ($(TARGET_PREBUILT_KERNEL_MODULES), )
-KERNEL_MODULE_DIR := device/thead/th1520-kernel
-else
-KERNEL_MODULE_DIR := $(TARGET_PREBUILT_KERNEL_MODULES)
+$(error TARGET_PREBUILT_KERNEL_MODULES must point to modules built with the selected LPi4A kernel)
 endif
 
+KERNEL_MODULE_DIR := $(TARGET_PREBUILT_KERNEL_MODULES)
 BOARD_VENDOR_KERNEL_MODULES := $(wildcard $(KERNEL_MODULE_DIR)/*.ko)
