@@ -1,5 +1,13 @@
 TARGET_BOARD_PLATFORM := th1520
 
+# The LPi4A mainline kernel cannot delegate FUSE backing-file registration to
+# the unprivileged MediaProvider. Use normal FUSE until that ABI is supported.
+# A system_ext init action also migrates the inherited persistent true value.
+ifeq ($(TARGET_PRODUCT),lichee_pi_4a)
+PRODUCT_COPY_FILES += \
+    device/thead/th1520/init.lpi4a-fuse.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.lpi4a-fuse.rc
+endif
+
 $(call inherit-product, vendor/thead/proprietary/config/chipset/th1520/th1520.mk)
 
 include device/thead/th1520/subdevs/graphics/graphics.mk

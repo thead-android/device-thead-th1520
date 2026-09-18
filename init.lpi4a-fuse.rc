@@ -1,0 +1,9 @@
+# Mainline FUSE backing-open requires CAP_SYS_ADMIN, which MediaProvider does
+# not and must not receive. Cuttlefish's enabled passthrough setting otherwise
+# turns ordinary /sdcard CREATE/OPEN into EPERM -> EFAULT on this board.
+# Run after persistent properties load, so an old userdata value cannot undo
+# the fix. Keep this on system_ext: vendor_init cannot set this system property.
+# TODO: Re-enable only after an Android-compatible delegated passthrough ABI
+# is implemented and tested with MediaProvider's unchanged credentials.
+on property:ro.persistent_properties.ready=true && property:persist.sys.fuse.passthrough.enable=true
+    setprop persist.sys.fuse.passthrough.enable false
