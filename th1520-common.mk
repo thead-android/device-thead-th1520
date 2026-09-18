@@ -19,6 +19,12 @@ PRODUCT_CHARACTERISTICS := tablet
 DEVICE_MANIFEST_FILE += \
     device/thead/th1520/manifest.xml
 
+# Android 17 no longer installs the frozen Android 10 framework matrix, but
+# this board's vendor manifest still correctly declares FCM level 4. Install
+# the restored matrix on system_ext through the Android.bp module.
+PRODUCT_PACKAGES += \
+    th1520_framework_compatibility_matrix.4.xml
+
 PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
 
 # Enable userspace reboot
@@ -34,11 +40,8 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
 # $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/compression.mk)
 # $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 
-#debug tools included only for userdebug and eng build
-ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
-PRODUCT_PACKAGES += \
-    modetest
-endif
+# modetest installs into /system/bin. Modern generic_system artifact-path
+# enforcement rejects device-specific additions there; keep it out of images.
 
 ifeq ($(TARGET_PREBUILT_KERNEL_MODULES), )
 KERNEL_MODULE_DIR := device/thead/th1520-kernel

@@ -25,16 +25,31 @@ TARGET_CPU_VARIANT := generic
 
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_VNDK_VERSION := current
+TARGET_VULKAN_SUPPORT := true
+TARGET_USES_VULKAN := true
 
 BOARD_BOOTCONFIG += androidboot.console=ttyS0
 BOARD_BOOTCONFIG += androidboot.bootreason=cold,powerkey
 BOARD_BOOTCONFIG += androidboot.usb_mode=2
 BOARD_BOOTCONFIG += androidboot.usb_speed=5
-BOARD_BOOTCONFIG += androidboot.boot_devices=soc/ffe7080000.sdhci
-BOARD_BOOTCONFIG += androidboot.slot_suffix=_a
+BOARD_BOOTCONFIG += androidboot.boot_devices=soc/ffe7080000.mmc
 BOARD_BOOTCONFIG += androidboot.selinux=permissive
 
-BOARD_KERNEL_CMDLINE += bootconfig
+# The bootloader supplies androidboot.slot_suffix from the selected BCB slot.
+# Do not leave an unattended board halted after an early bring-up panic.
+BOARD_KERNEL_CMDLINE += panic=5
+
+# C910 does not implement Zacas (128-bit CAS). Linux 7.x BPF local storage uses
+# kmalloc_nolock(), which requires CMPXCHG_DOUBLE unless the selected SLUB cache
+# uses its trylock-based debug path. The 184-byte storage and 200-byte element
+# use the 192/256-byte caches; kmalloc_nolock() may retry once in the next
+# larger cache, so include 256/512 without slowing every cache.
+BOARD_KERNEL_CMDLINE += slub_debug=F,kmalloc-cg-192,kmalloc-cg-256,kmalloc-cg-512
+
+# Keep the physical HDMI pipeline available when DDC/EDID cannot be read.
+# 1280x720 keeps Android in the tested 16:9 layout; the 1024x768 fallback
+# selects a substantially slower 4:3 tablet layout in Settings/SystemUI.
+BOARD_KERNEL_CMDLINE += video=HDMI-A-1:1280x720@60e
 # Include *.dtb to vendor_boot.img and use Android Boot Image v4
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_BOOT_HEADER_VERSION := 4

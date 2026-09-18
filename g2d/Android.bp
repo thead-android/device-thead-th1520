@@ -1,0 +1,40 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+cc_library_shared {
+    name: "libth1520_g2d",
+    vendor_available: true,
+    srcs: ["th1520_g2d.c"],
+    export_include_dirs: ["include"],
+    include_dirs: [
+        "external/libdrm/etnaviv",
+        "external/libdrm/tests/etnaviv",
+    ],
+    shared_libs: [
+        "libdrm",
+        "libdrm_etnaviv",
+    ],
+    cflags: [
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+    ],
+}
+
+cc_binary {
+    name: "th1520_g2d_test",
+    vendor: true,
+    srcs: ["th1520_g2d_test.c"],
+    include_dirs: ["external/libdrm/etnaviv"],
+    shared_libs: [
+        "libdrm",
+        "libdrm_etnaviv",
+        "libth1520_g2d",
+    ],
+    cflags: [
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+    ],
+}

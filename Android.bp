@@ -1,0 +1,6 @@
+vintf_compatibility_matrix {
+    name: "th1520_framework_compatibility_matrix.4.xml",
+    stem: "compatibility_matrix.4.xml",
+    system_ext_specific: true,
+    srcs: ["compatibility_matrix.4.xml"],
+}
