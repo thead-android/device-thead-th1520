@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The AIC8800D80 advertises SAE support, but its external-auth path rejects the
+  LPI4A test AP's WPA2/WPA3 transition BSS. Keep explicit WPA3 available while
+  preventing Android from silently upgrading a WPA2 network to SAE.
+-->
+<resources>
+    <!-- Android 17 ships the AIDL supplicant in the Wi-Fi mainline APEX. -->
+    <bool name="config_wifiMainlineSupplicantEnabled">true</bool>
+    <bool name="config_wifiSaeUpgradeEnabled">false</bool>
+    <bool name="config_wifiSaeUpgradeOffloadEnabled">false</bool>
+</resources>
