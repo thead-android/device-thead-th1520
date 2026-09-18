@@ -4,3 +4,11 @@ vintf_compatibility_matrix {
     system_ext_specific: true,
     srcs: ["compatibility_matrix.4.xml"],
 }
+
+prebuilt_etc {
+    name: "thead_wpa_supplicant.conf",
+    src: ":wpa_supplicant_conf_gen",
+    filename: "wpa_supplicant.conf",
+    sub_dir: "wifi",
+    vendor: true,
+}

@@ -9,4 +9,6 @@
     <bool name="config_wifiMainlineSupplicantEnabled">true</bool>
     <bool name="config_wifiSaeUpgradeEnabled">false</bool>
     <bool name="config_wifiSaeUpgradeOffloadEnabled">false</bool>
+    <!-- LPi4A is commonly used with Ethernet and Wi-Fi connected at the same time. -->
+    <bool name="config_wifiAllowAutoJoinWithoutTrustedNetworkRequest">true</bool>
 </resources>
