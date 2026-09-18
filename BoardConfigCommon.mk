@@ -39,6 +39,11 @@ BOARD_BOOTCONFIG += androidboot.selinux=permissive
 # Do not leave an unattended board halted after an early bring-up panic.
 BOARD_KERNEL_CMDLINE += panic=5
 
+# Keep the DT serial4 alias at ttyS4. The vendor default only reserves four
+# ports and would otherwise assign UART4 the first free legacy ttyS slot.
+BOARD_KERNEL_CMDLINE := $(filter-out 8250.nr_uarts=%,$(BOARD_KERNEL_CMDLINE))
+BOARD_KERNEL_CMDLINE += 8250.nr_uarts=8
+
 # C910 does not implement Zacas (128-bit CAS). Linux 7.x BPF local storage uses
 # kmalloc_nolock(), which requires CMPXCHG_DOUBLE unless the selected SLUB cache
 # uses its trylock-based debug path. The 184-byte storage and 200-byte element

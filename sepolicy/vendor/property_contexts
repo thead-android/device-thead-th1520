@@ -1,0 +1,3 @@
+vendor.ser.bt-uart    u:object_r:vendor_lpi4a_bluetooth_uart_prop:s0 exact string
+vendor.ser.bt-baud    u:object_r:vendor_lpi4a_bluetooth_uart_prop:s0 exact int
+vendor.ser.bt-rtscts  u:object_r:vendor_lpi4a_bluetooth_uart_prop:s0 exact bool

@@ -1,0 +1,4 @@
+# Only the physical H4 HAL consumes these board transport properties.
+vendor_internal_prop(vendor_lpi4a_bluetooth_uart_prop)
+get_prop(hal_bluetooth_default, vendor_lpi4a_bluetooth_uart_prop)
+set_prop(vendor_init, vendor_lpi4a_bluetooth_uart_prop)

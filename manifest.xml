@@ -26,16 +26,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl">
-        <name>android.hardware.bluetooth</name>
-        <transport>hwbinder</transport>
-        <version>1.1</version>
-        <interface>
-            <name>IBluetoothHci</name>
-            <instance>default</instance>
-        </interface>
-        <fqname>@1.1::IBluetoothHci/default</fqname>
-    </hal>
+    <!-- Bluetooth is provided by the AOSP AIDL HAL's installed VINTF fragment. -->
     <hal format="hidl">
         <name>android.hardware.configstore</name>
         <transport>hwbinder</transport>

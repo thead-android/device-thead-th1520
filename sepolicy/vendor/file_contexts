@@ -82,3 +82,6 @@
 
 /vendor/bin/hw/android\.hardware\.oemlock-service.th1520 u:object_r:hal_oemlock_default_exec:s0
 /vendor/bin/hw/android\.hardware\.media\.c2@1\.2-service-v4l2-64 u:object_r:mediacodec_exec:s0
+
+# Board UART4, reserved as serial4 by the image's 8250.nr_uarts setting.
+/dev/ttyS4 u:object_r:bt_device:s0
