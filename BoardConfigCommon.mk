@@ -54,10 +54,11 @@ BOARD_KERNEL_CMDLINE += 8250.nr_uarts=8
 # larger cache, so include 256/512 without slowing every cache.
 BOARD_KERNEL_CMDLINE += slub_debug=F,kmalloc-cg-192,kmalloc-cg-256,kmalloc-cg-512
 
-# Keep the physical HDMI pipeline available when DDC/EDID cannot be read.
-# 1280x720 keeps Android in the tested 16:9 layout; the 1024x768 fallback
-# selects a substantially slower 4:3 tablet layout in Settings/SystemUI.
-BOARD_KERNEL_CMDLINE += video=HDMI-A-1:1280x720@60e
+# Prefer the tested 16:9 mode when HDMI is physically connected. Do NOT append
+# 'e'/'D': forcing the connector on creates a phantom second display when HPD
+# is low, and its 60Hz timing forces the slower DSI panel into GPU composition.
+# Connector presence must remain controlled by the HDMI driver's HPD detection.
+BOARD_KERNEL_CMDLINE += video=HDMI-A-1:1280x720@60
 # Include *.dtb to vendor_boot.img and use Android Boot Image v4
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_BOOT_HEADER_VERSION := 4
