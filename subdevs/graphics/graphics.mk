@@ -8,7 +8,7 @@ PRODUCT_PACKAGES += \
     android.hardware.composer.hwc3-service.th1520-g2d
 
 PRODUCT_VENDOR_PROPERTIES += vendor.hwc.g2d.enabled=true
-PRODUCT_SYSTEM_PROPERTIES += debug.sf.force_rgba_cursor=true
+PRODUCT_SYSTEM_EXT_PROPERTIES += debug.sf.force_rgba_cursor=true
 
 # The HDMI bridge supplies fallback modes but no EDID preferred flag on LPi4A.
 # Keep Android in the tested 16:9 layout instead of picking 1024x768 solely
