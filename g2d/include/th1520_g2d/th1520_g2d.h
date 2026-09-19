@@ -96,6 +96,8 @@ int th1520_g2d_blend(struct th1520_g2d *g2d,
  * Converts an RGB8888 DMA-BUF into a two-plane, linear NV12 DMA-BUF.  The
  * first implementation intentionally accepts only full-frame, 1:1 blits;
  * this is the zero-copy path needed by Android's encoder input surface.
+ * Both NV12 plane strides must be multiples of 64 bytes. Padding is allowed;
+ * the visible rectangle does not need to have a 64-pixel-aligned width.
  */
 int th1520_g2d_rgb_to_nv12(struct th1520_g2d *g2d,
 			   const struct th1520_g2d_image *src,

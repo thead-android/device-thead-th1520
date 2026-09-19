@@ -151,6 +151,12 @@ static int validate_nv12(const struct th1520_g2d_image *image,
 	if (image->planes[0].stride < image->width ||
 	    image->planes[1].stride < image->width)
 		return -EINVAL;
+	/* The GC620 one-pass NV12 writer needs 64-byte pitches. A 544-byte
+	 * destination shears rows even with a padded RGB source; 576 is exact.
+	 * Reject unsupported layouts instead of submitting corrupted output.
+	 */
+	if ((image->planes[0].stride | image->planes[1].stride) & 63u)
+		return -EINVAL;
 
 	y_end = (uint64_t)image->planes[0].offset +
 		(uint64_t)(image->height - 1u) * image->planes[0].stride +
