@@ -2,6 +2,18 @@ package {
     default_applicable_licenses: ["Android-Apache-2.0"],
 }
 
+// Optional bring-up variant. Not added to PRODUCT_PACKAGES until board
+// acceptance; the ordinary drm composer keeps its existing build/dependencies.
+cc_binary {
+    name: "android.hardware.composer.hwc3-service.th1520-g2d",
+    defaults: ["android.hardware.composer.hwc3-service.drm.defaults"],
+    srcs: [":drm_hwcomposer_th1520_g2d"],
+    shared_libs: ["libth1520_g2d"],
+    cflags: ["-DUSE_TH1520_G2D"],
+    relative_install_path: "hw",
+    vendor: true,
+}
+
 cc_library_shared {
     name: "libth1520_g2d",
     vendor_available: true,
