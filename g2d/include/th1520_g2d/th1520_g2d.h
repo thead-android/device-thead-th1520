@@ -81,6 +81,17 @@ int th1520_g2d_blit(struct th1520_g2d *g2d,
 		    int in_fence_fd,
 		    int *out_fence_fd);
 
+/* Premultiplied source-over, 1:1 linear RGB8888 only, with full plane alpha.
+ * XRGB/XBGR sources are opaque. No scaling, rotation or color transform.
+ */
+int th1520_g2d_blend(struct th1520_g2d *g2d,
+		     const struct th1520_g2d_image *src,
+		     const struct th1520_g2d_rect *src_rect,
+		     const struct th1520_g2d_image *dst,
+		     const struct th1520_g2d_rect *dst_rect,
+		     int in_fence_fd,
+		     int *out_fence_fd);
+
 /*
  * Converts an RGB8888 DMA-BUF into a two-plane, linear NV12 DMA-BUF.  The
  * first implementation intentionally accepts only full-frame, 1:1 blits;

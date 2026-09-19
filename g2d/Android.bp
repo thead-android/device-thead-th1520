@@ -2,6 +2,20 @@ package {
     default_applicable_licenses: ["Android-Apache-2.0"],
 }
 
+cc_binary {
+    name: "lpi4a_g2d_hwc_scene",
+    srcs: ["g2d_hwc_scene.cpp"],
+    shared_libs: ["libgui", "libui", "libbinder", "libutils", "libnativewindow", "liblog"],
+    cflags: ["-Wall", "-Wextra", "-Werror"],
+}
+
+cc_binary {
+    name: "lpi4a_g2d_scanout_probe",
+    srcs: ["g2d_scanout_probe.c"],
+    shared_libs: ["libdrm"],
+    cflags: ["-Wall", "-Wextra", "-Werror"],
+}
+
 cc_library_shared {
     name: "libth1520_g2d",
     vendor_available: true,

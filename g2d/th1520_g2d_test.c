@@ -14,6 +14,7 @@
 #include <fcntl.h>
 #include <inttypes.h>
 #include <poll.h>
+#include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -66,6 +67,30 @@ static int verify_color(struct etna_bo *bo, uint32_t expected)
 			fprintf(stderr, "mismatch at %zu: %08x != %08x\n",
 				i, p[i], expected);
 			return -1;
+		}
+	}
+	return 0;
+}
+
+static int verify_blend(struct etna_bo *bo, const struct th1520_g2d_rect *rect,
+			uint32_t inside, uint32_t outside, bool check_alpha)
+{
+	volatile uint32_t *p = etna_bo_map(bo);
+	for (unsigned int y = 0; y < HEIGHT; y++) {
+		for (unsigned int x = 0; x < WIDTH; x++) {
+			bool in = x >= rect->x && x < rect->x + rect->width &&
+				  y >= rect->y && y < rect->y + rect->height;
+			uint32_t want = in ? inside : outside;
+			uint32_t actual = p[(size_t)y * WIDTH + x];
+			for (unsigned int shift = 0; shift < (check_alpha ? 32u : 24u); shift += 8) {
+				int diff = (int)((actual >> shift) & 255) -
+					   (int)((want >> shift) & 255);
+				if (diff < -1 || diff > 1) {
+					fprintf(stderr, "blend mismatch %u,%u: %08x != %08x\n",
+						x, y, actual, want);
+					return -1;
+				}
+			}
 		}
 	}
 	return 0;
@@ -377,6 +402,54 @@ int main(int argc, char **argv)
 	}
 	etna_bo_cpu_fini(dst);
 	printf("DMA-BUF RGB blit + output fence: PASS\n");
+
+	const unsigned int alphas[] = { 0, 1, 127, 128, 254, 255 };
+	const struct th1520_g2d_rect source_part = { 8, 6, 317, 205 };
+	const struct th1520_g2d_rect dest_part = { 27, 42, 317, 205 };
+	for (unsigned int dest_has_alpha = 0; dest_has_alpha < 2; dest_has_alpha++) {
+	 dst_image.format = dest_has_alpha ? TH1520_G2D_FORMAT_ARGB8888 :
+					    TH1520_G2D_FORMAT_XRGB8888;
+	 for (size_t a = 0; a < sizeof(alphas) / sizeof(alphas[0]); a++) {
+		unsigned int alpha = alphas[a];
+		unsigned int r = 192 * alpha / 255;
+		unsigned int g = 80 * alpha / 255;
+		unsigned int b = 32 * alpha / 255;
+		uint32_t src_pixel = alpha << 24 | b << 16 | g << 8 | r;
+		uint32_t want = 0xff000000 |
+			(r + (40 * (255 - alpha) + 127) / 255) << 16 |
+			(g + (100 * (255 - alpha) + 127) / 255) << 8 |
+			(b + (200 * (255 - alpha) + 127) / 255);
+		if ((ret = etna_bo_cpu_prep(src, DRM_ETNA_PREP_WRITE)))
+			goto out;
+		scalar_fill(src, src_pixel);
+		etna_bo_cpu_fini(src);
+		int clear_fence = -1;
+		ret = th1520_g2d_clear(g2d, &dst_image, &full,
+				       destination_color, -1, &clear_fence);
+		if (ret)
+			goto out;
+		ret = th1520_g2d_blend(g2d, &src_image, &source_part,
+				       &dst_image, &dest_part, clear_fence, &fence_fd);
+		close(clear_fence);
+		if (ret || (ret = wait_fence(fence_fd)))
+			goto out;
+		close(fence_fd);
+		fence_fd = -1;
+		if ((ret = etna_bo_cpu_prep(dst, DRM_ETNA_PREP_READ)))
+			goto out;
+		ret = verify_blend(dst, &dest_part, want, destination_color, dest_has_alpha != 0);
+		etna_bo_cpu_fini(dst);
+		if (ret)
+			goto out;
+		printf("Premultiplied blend dst=%s alpha=%u, offset/swizzle/fence: PASS\n",
+		       dest_has_alpha ? "ARGB" : "XRGB", alpha);
+	 }
+	}
+	dst_image.format = TH1520_G2D_FORMAT_ARGB8888;
+	if ((ret = etna_bo_cpu_prep(src, DRM_ETNA_PREP_WRITE)))
+		goto out;
+	scalar_fill(src, source_color);
+	etna_bo_cpu_fini(src);
 
 	if (etna_bo_cpu_prep(nv12,
 			     DRM_ETNA_PREP_WRITE | DRM_ETNA_PREP_NOSYNC)) {
