@@ -412,12 +412,12 @@ out:
 	return ret;
 }
 
-int th1520_g2d_blit(struct th1520_g2d *g2d,
+static int blit_rgb(struct th1520_g2d *g2d,
 		    const struct th1520_g2d_image *src,
 		    const struct th1520_g2d_rect *src_rect,
 		    const struct th1520_g2d_image *dst,
 		    const struct th1520_g2d_rect *dst_rect,
-		    int in_fence_fd, int *out_fence_fd)
+		    int in_fence_fd, int *out_fence_fd, bool source_over)
 {
 	struct etna_cmd_stream *stream = NULL;
 	struct etna_bo *src_bo = NULL;
@@ -435,6 +435,9 @@ int th1520_g2d_blit(struct th1520_g2d *g2d,
 	if (src_rect->width != dst_rect->width ||
 	    src_rect->height != dst_rect->height)
 		return -ENOTSUP;
+	if (src->format == TH1520_G2D_FORMAT_XRGB8888 ||
+	    src->format == TH1520_G2D_FORMAT_XBGR8888)
+		source_over = false;
 
 	pthread_mutex_lock(&g2d->lock);
 	src_bo = etna_bo_from_dmabuf(g2d->dev, src->planes[0].dmabuf_fd);
@@ -478,7 +481,8 @@ int th1520_g2d_blit(struct th1520_g2d *g2d,
 		  VIVS_DE_STRETCH_FACTOR_HIGH_Y(1u << 16));
 
 	set_state_bo(stream, VIVS_DE_DEST_ADDRESS, dst_bo,
-		     ETNA_RELOC_WRITE, dst->planes[0].offset);
+		     ETNA_RELOC_WRITE | (source_over ? ETNA_RELOC_READ : 0),
+		     dst->planes[0].offset);
 	set_state(stream, VIVS_DE_DEST_STRIDE, dst->planes[0].stride);
 	set_state(stream, VIVS_DE_DEST_ROTATION_CONFIG, 0);
 	set_state(stream, VIVS_DE_DEST_CONFIG,
@@ -489,6 +493,16 @@ int th1520_g2d_blit(struct th1520_g2d *g2d,
 		  VIVS_DE_DEST_CONFIG_MINOR_TILED_DISABLE);
 	emit_clip(stream, dst);
 	emit_common_state(stream);
+	if (source_over) {
+		/* Premultiplied Porter-Duff OVER: Cs + Cd * (1 - As).
+		 * No global alpha or straight-alpha multiply is applied.
+		 */
+		set_state(stream, VIVS_DE_ALPHA_CONTROL,
+			  VIVS_DE_ALPHA_CONTROL_ENABLE_ON);
+		set_state(stream, VIVS_DE_ALPHA_MODES,
+			  VIVS_DE_ALPHA_MODES_SRC_BLENDING_MODE(DE_BLENDMODE_ONE) |
+			  VIVS_DE_ALPHA_MODES_DST_BLENDING_MODE(DE_BLENDMODE_INVERSED));
+	}
 	emit_draw_rect(stream, dst_rect);
 	ret = submit(stream, in_fence_fd, out_fence_fd);
 
@@ -501,6 +515,28 @@ out:
 		etna_bo_del(src_bo);
 	pthread_mutex_unlock(&g2d->lock);
 	return ret;
+}
+
+int th1520_g2d_blit(struct th1520_g2d *g2d,
+		    const struct th1520_g2d_image *src,
+		    const struct th1520_g2d_rect *src_rect,
+		    const struct th1520_g2d_image *dst,
+		    const struct th1520_g2d_rect *dst_rect,
+		    int in_fence_fd, int *out_fence_fd)
+{
+	return blit_rgb(g2d, src, src_rect, dst, dst_rect, in_fence_fd,
+			out_fence_fd, false);
+}
+
+int th1520_g2d_blend(struct th1520_g2d *g2d,
+		     const struct th1520_g2d_image *src,
+		     const struct th1520_g2d_rect *src_rect,
+		     const struct th1520_g2d_image *dst,
+		     const struct th1520_g2d_rect *dst_rect,
+		     int in_fence_fd, int *out_fence_fd)
+{
+	return blit_rgb(g2d, src, src_rect, dst, dst_rect, in_fence_fd,
+			out_fence_fd, true);
 }
 
 int th1520_g2d_rgb_to_nv12(struct th1520_g2d *g2d,
