@@ -20,16 +20,13 @@ static const char* const kHeapPaths[] = {
 };
 
 int ion_open(void) {
-    size_t i;
-
-    for (i = 0; i < sizeof(kHeapPaths) / sizeof(kHeapPaths[0]); ++i) {
-        int fd = open(kHeapPaths[i], O_RDONLY | O_CLOEXEC);
-        if (fd >= 0) {
-            return fd;
-        }
-    }
-
-    return -errno;
+    /* Import-only clients also initialize gralloc, but must not open a
+     * physical CMA allocator. Keep a DMA-heap context for the legacy driver's
+     * heap capability probes, using the unprivileged system heap here. CMA
+     * access is deferred to actual allocation in the allocator service.
+     */
+    int fd = open("/dev/dma_heap/system", O_RDONLY | O_CLOEXEC);
+    return fd < 0 ? -errno : fd;
 }
 
 int ion_close(int fd) {
@@ -51,10 +48,17 @@ int ion_alloc_fd(int heap_fd, size_t len, size_t align,
     if (buffer_fd == NULL || len == 0) {
         return -EINVAL;
     }
-
-    if (ioctl(heap_fd, DMA_HEAP_IOCTL_ALLOC, &data) < 0) {
-        return -errno;
+    if (fcntl(heap_fd, F_GETFD) < 0) return -errno;
+    int allocation_heap = -1;
+    for (size_t i = 0; i < sizeof(kHeapPaths) / sizeof(kHeapPaths[0]); ++i) {
+        allocation_heap = open(kHeapPaths[i], O_RDONLY | O_CLOEXEC);
+        if (allocation_heap >= 0) break;
     }
+    if (allocation_heap < 0) return -errno;
+    int result = ioctl(allocation_heap, DMA_HEAP_IOCTL_ALLOC, &data);
+    int saved_errno = errno;
+    close(allocation_heap);
+    if (result < 0) return -saved_errno;
 
     *buffer_fd = (int)data.fd;
     return 0;

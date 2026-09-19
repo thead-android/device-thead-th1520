@@ -20,17 +20,6 @@ allow hal_graphics_allocator_default gpu_device:chr_file {
     write
 };
 
-# minigbm's stable-C mapper passes a small allocator-created memfd reserved
-# region with each buffer.  Restrict access to existing graphics allocator
-# clients, which are exactly the domains that receive those file descriptors.
-# Android apps carry per-app MLS categories, while the allocator creates these
-# shared memfds at plain s0.  The type must be trusted across that MLS boundary;
-# the allow rule below alone is otherwise rejected by the MLS constraints.
-typeattribute hal_graphics_allocator_default_tmpfs mlstrustedobject;
-
-allow hal_graphics_allocator_client hal_graphics_allocator_default_tmpfs:file {
-    getattr
-    map
-    read
-    write
-};
+# The DDK exports DMA-BUF metadata, not minigbm's reserved-region memfd.
+# Do not grant all allocator clients access to allocator-private tmpfs: that
+# includes isolated_compute_app and violates the platform isolation contract.

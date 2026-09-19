@@ -54,6 +54,8 @@ cc_prebuilt_library_shared {
 
 cc_library_shared {
     name: "libth1520_ion_compat",
+    stl: "none",
+    system_shared_libs: ["libc"],
     stem: "libion",
     vendor: true,
     relative_install_path: "hw",
