@@ -24,6 +24,9 @@
 
 # AIDL minigbm allocator uses the standard graphics allocator domain.
 /(vendor|system/vendor)/bin/hw/android\.hardware\.graphics\.allocator-service\.minigbm u:object_r:hal_graphics_allocator_default_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.graphics\.allocator-service\.th1520-legacy u:object_r:hal_graphics_allocator_default_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.graphics\.allocator@4\.0-service u:object_r:hal_graphics_allocator_default_exec:s0
+/(vendor|system/vendor)/lib64/hw/android\.hardware\.graphics\.mapper@4\.0-impl\.so u:object_r:same_process_hal_file:s0
 
 #soft gpu
 /vendor/lib64/hw/gralloc\.arv\.so          u:object_r:same_process_hal_file:s0

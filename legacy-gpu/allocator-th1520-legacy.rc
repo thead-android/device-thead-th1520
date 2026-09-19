@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: Apache-2.0
+service vendor.gralloc-4-0 /vendor/bin/hw/android.hardware.graphics.allocator@4.0-service
+    interface android.hardware.graphics.allocator@4.0::IAllocator default
+    class hal animation
+    user system
+    group graphics drmrpc
+    capabilities SYS_NICE
+    onrestart restart vendor.graphics.allocator
+
+service vendor.graphics.allocator /vendor/bin/hw/android.hardware.graphics.allocator-service.th1520-legacy
+    interface aidl android.hardware.graphics.allocator.IAllocator/default
+    class hal animation
+    user system
+    group graphics drmrpc
+    capabilities SYS_NICE
+    onrestart restart surfaceflinger

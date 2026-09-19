@@ -1,0 +1,62 @@
+package { default_applicable_licenses: ["Android-Apache-2.0"] }
+
+license {
+    name: "th1520_legacy_gpu_blob_license",
+    license_kinds: ["legacy_proprietary"],
+}
+
+cc_binary {
+    name: "android.hardware.graphics.allocator-service.th1520-legacy",
+    vendor: true,
+    relative_install_path: "hw",
+    srcs: ["LegacyAllocator.cpp"],
+    static_libs: ["android.hardware.graphics.allocator-V1-ndk"],
+    shared_libs: [
+        "android.hardware.common-V2-ndk",
+        "android.hardware.graphics.allocator@4.0",
+        "android.hardware.graphics.mapper@4.0",
+        "libbinder_ndk", "libhidlbase", "liblog", "libutils", "libcutils",
+    ],
+    init_rc: ["allocator-th1520-legacy.rc"],
+    vintf_fragments: ["allocator-th1520-legacy.xml", "mapper-th1520-legacy.xml"],
+    cflags: ["-Wall", "-Wextra", "-Werror"],
+}
+
+cc_prebuilt_binary {
+    name: "android.hardware.graphics.allocator@4.0-service.th1520",
+    stem: "android.hardware.graphics.allocator@4.0-service",
+    licenses: ["th1520_legacy_gpu_blob_license"],
+    vendor: true,
+    compile_multilib: "64",
+    relative_install_path: "hw",
+    srcs: ["prebuilts/allocator4"],
+    strip: { none: true },
+    shared_libs: [
+        "libbase", "liblog", "libutils", "libhardware", "libhidlbase",
+        "libhidlmemory", "libgralloctypes", "android.hardware.graphics.allocator@4.0",
+    ],
+}
+
+cc_prebuilt_library_shared {
+    name: "android.hardware.graphics.mapper@4.0-impl.th1520",
+    stem: "android.hardware.graphics.mapper@4.0-impl",
+    licenses: ["th1520_legacy_gpu_blob_license"],
+    vendor: true,
+    compile_multilib: "64",
+    relative_install_path: "hw",
+    srcs: ["prebuilts/mapper4.so"],
+    strip: { none: true },
+    shared_libs: [
+        "libbase", "liblog", "libutils", "libhardware", "libhidlbase",
+        "libhidlmemory", "libgralloctypes", "android.hardware.graphics.mapper@4.0",
+    ],
+}
+
+cc_library_shared {
+    name: "libth1520_ion_compat",
+    stem: "libion",
+    vendor: true,
+    relative_install_path: "hw",
+    srcs: ["ion_compat.c"],
+    cflags: ["-Wall", "-Wextra", "-Werror"],
+}

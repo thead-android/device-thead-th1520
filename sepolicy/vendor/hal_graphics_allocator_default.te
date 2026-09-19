@@ -4,6 +4,10 @@ type dmabuf_cma_heap_device, dmabuf_heap_device_type, dev_type;
 # from the mainline CMA DMA-BUF heap.
 allow hal_graphics_allocator_default dmabuf_cma_heap_device:chr_file r_file_perms;
 
+# AIDL front end and original HIDL backend are separate init-managed services
+# in this domain. No child-process execute_no_trans exception is needed.
+allow hal_graphics_allocator_default self:binder { call transfer };
+
 # The minigbm allocator opens the render node selected by DRM.  LPI4A exposes
 # renderD129 when the display controller owns card0, so this cannot be covered
 # by the old renderD128-only device label.

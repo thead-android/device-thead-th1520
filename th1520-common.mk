@@ -59,6 +59,9 @@ $(error TARGET_PREBUILT_KERNEL_MODULES must point to modules built with the sele
 endif
 
 KERNEL_MODULE_DIR := $(TARGET_PREBUILT_KERNEL_MODULES)
+ifeq ($(wildcard $(KERNEL_MODULE_DIR)/pvrsrvkm.ko),)
+$(error The proprietary GPU image requires matching Android-sync pvrsrvkm.ko in KERNEL_MODULE_DIR)
+endif
 # Do not silently build an image whose init requests an absent backlight module.
 ifeq ($(wildcard $(KERNEL_MODULE_DIR)/th1520_pwm0_diag.ko),)
 $(error This LPi4A DSI image requires the matching th1520_pwm0_diag.ko module)
